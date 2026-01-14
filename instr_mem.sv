@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module imem_sync #(
   parameter IMEM_BYTES = 4096,
   localparam WORDS     = IMEM_BYTES/4,

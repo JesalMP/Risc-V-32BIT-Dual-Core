@@ -1,12 +1,14 @@
+`timescale 1ns / 1ps
+
 module control_unit(
-    input  [6:0] opcode,
-    output reg RegWrite,
-    output reg MemRead,
-    output reg MemWrite,
-    output reg MemtoReg,
-    output reg ALUSrc,
-    output reg [1:0] ALUOp,
-    output reg Jump
+    input  logic [6:0] opcode,
+    output logic RegWrite,
+    output logic MemRead,
+    output logic MemWrite,
+    output logic MemtoReg,
+    output logic ALUSrc,
+    output logic [1:0] ALUOp,
+    output logic Jump
 );
 always @(*) begin
     RegWrite = 0; MemRead = 0; MemWrite = 0;

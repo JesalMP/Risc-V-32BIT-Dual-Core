@@ -1,0 +1,25 @@
+#-----------------------------------------------------------
+# xsim v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Wed Jan 14 13:01:38 2026
+# Process ID         : 8608
+# Current directory  : C:/College/projects/Risc-V-32BIT-Dual-Core
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/top_sim/xsim_script.tcl}
+# Log file           : C:/College/projects/Risc-V-32BIT-Dual-Core/xsim.log
+# Journal file       : C:/College/projects/Risc-V-32BIT-Dual-Core\xsim.jou
+# Running On         : omenmax
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 7 255HX
+# CPU Frequency      : 2880 MHz
+# CPU Physical cores : 20
+# CPU Logical cores  : 20
+# Host memory        : 33737 MB
+# Swap memory        : 30064 MB
+# Total Virtual      : 63802 MB
+# Available Virtual  : 41168 MB
+#-----------------------------------------------------------
+source xsim.dir/top_sim/xsim_script.tcl
+run -all

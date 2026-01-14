@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module IF (
     input logic clk,
     input logic rst_n,
@@ -8,10 +10,6 @@ module IF (
   logic [31:0] instr_from_IF;
   logic [31:0] pc;
   logic [31:0] pc_to_IMEM;
-  
-  initial begin
-    pc = 32'b0; // Initialize program counter
-  end
 
   imem_sync imem_inst (
       .clk(clk),
