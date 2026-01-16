@@ -4,11 +4,14 @@ module ID (
     input logic clk,
     input logic rst_n,
     input logic [31:0] instr_in,
+    input logic [31:0] pc_in,
     input logic stall_in = 0,
+    input logic flush_in = 0,
     output logic stall_out,
     output logic [6:0] opcode_out,
     output logic [31:0] rs1_out,
     output logic [31:0] rs2_out,
+    output logic [31:0] pc_out,
     output logic [4:0] rd_addr_out,
     output logic [2:0] funct3_out,
     output logic [6:0] funct7_out,
@@ -21,6 +24,7 @@ module ID (
     output logic ALUSrc,
     output logic [1:0] ALUOp,
     output logic Jump,
+    output logic Branch,
     
     // Write-back signals
     input logic [31:0] wb_data,
@@ -39,7 +43,8 @@ module ID (
         .MemtoReg(MemtoReg),
         .ALUSrc(ALUSrc),
         .ALUOp(ALUOp),
-        .Jump(Jump)
+        .Jump(Jump),
+        .Branch(Branch)
     );
 
     logic [4:0] rs1_addr, rs2_addr;
@@ -63,13 +68,26 @@ module ID (
             opcode_out <= 7'b0;
             rs1_out <= 32'b0;
             rs2_out <= 32'b0;
+            pc_out <= 32'b0;
             rd_addr_out <= 5'b0;
             funct3_out <= 3'b0;
             funct7_out <= 7'b0;
             imm_out <= 32'b0;
             imm_j_out <= 32'b0;
         end
-        if (stall_in) begin
+        if (flush_in) begin
+            // Insert NOP (bubble) into pipeline
+            stall_out <= 1'b0;
+            opcode_out <= 7'b0;
+            rs1_out <= 32'b0;
+            rs2_out <= 32'b0;
+            rd_addr_out <= 5'b0;
+            funct3_out <= 3'b0;
+            funct7_out <= 7'b0;
+            imm_out <= 32'b0;
+            imm_j_out <= 32'b0;
+            pc_out <= 32'b0;
+        end else if (stall_in) begin
             stall_out <= 1'b1; // Hold the instruction if stalled
             opcode_out <= opcode_out;
             rs1_out <= rs1_out;
@@ -83,6 +101,7 @@ module ID (
         end else begin
             stall_out <= 1'b0;
             opcode_out <= instr_in[6:0];
+            pc_out <= pc_in;
             rs1_addr_out <= rs1_addr;
             rs2_addr_out <= rs2_addr;
             case (instr_in[6:0])
@@ -122,6 +141,17 @@ module ID (
                     rs2_out <= rs2_data;
                     imm_out <= {{20{instr_in[31]}}, instr_in[31:25], instr_in[11:7]}; // sign-extended
                     $strobe("ID Stage - S-type: %032b", instr_in);
+                end
+
+                // ---------------- B-type (Branch) ----------------
+                7'b1100011: begin
+                    funct3_out <= instr_in[14:12];
+                    rs1_addr = instr_in[19:15];
+                    rs2_addr = instr_in[24:20];
+                    rs1_out <= rs1_data;
+                    rs2_out <= rs2_data;
+                    imm_out <= {{20{instr_in[31]}}, instr_in[31], instr_in[7], instr_in[30:25], instr_in[11:8], 1'b0}; // sign-extended branch offset
+                    $strobe("ID Stage - B-type: %032b", instr_in);
                 end
 
                 // ---------------- J-type (JAL) ----------------

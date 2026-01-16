@@ -3,8 +3,8 @@
 # SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
 # IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
 # SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
-# Start of session at: Wed Jan 14 13:01:38 2026
-# Process ID         : 8608
+# Start of session at: Thu Jan 15 23:21:01 2026
+# Process ID         : 23432
 # Current directory  : C:/College/projects/Risc-V-32BIT-Dual-Core
 # Command line       : xsim.exe -mode tcl -source {xsim.dir/top_sim/xsim_script.tcl}
 # Log file           : C:/College/projects/Risc-V-32BIT-Dual-Core/xsim.log
@@ -19,143 +19,145 @@
 # Host memory        : 33737 MB
 # Swap memory        : 30064 MB
 # Total Virtual      : 63802 MB
-# Available Virtual  : 41168 MB
+# Available Virtual  : 11013 MB
 #-----------------------------------------------------------
 source xsim.dir/top_sim/xsim_script.tcl
 # xsim {top_sim} -autoloadwcfg -runall
 Time resolution is 1 ps
 run -all
-IF Stage - PC: 0, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 00000000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: 00000000000000000000000000000000
-IF Stage - PC: 0, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 00000000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: 00000000000000000000000000000000
-IF Stage - PC: 0, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 00000000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: 00000000000000000000000000000000
-IF Stage - PC: 100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 00000004, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1000, Instruction: 00000000000100000000001100010011
+IF Stage - PC: 00000008, Instruction: 00000000000100000000001100010011
 ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1100, Instruction: 00000000001000000000001110010011
+IF Stage - PC: 0000000c, Instruction: 00000000001000000000001110010011
 ID Stage - Unknown: 00000000000100000000001100010011
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=1 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 10000, Instruction: 00000000010100110000010000110011
+IF Stage - PC: 00000010, Instruction: 00000000010100110000010000110011
 ID Stage - I-type: 00000000001000000000001110010011
 EX Stage - ALU: xxxxxxxx = xxxxxxxx op 00000001 | RD: x6 | Ctrl: RegWr=1 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 10100, Instruction: 00000000011000111000010010110011
+IF Stage - PC: 00000014, Instruction: 00000000011000111000010010110011
 ID Stage - I-type: 00000000010100110000010000110011
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x7 | Ctrl: RegWr=1 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=xxxxxxxx | RD: x6
-IF Stage - PC: 11000, Instruction: 01000000101001001000010000110011
+IF Stage - PC: 00000018, Instruction: 00000000100101000000010100110011
 ID Stage - R-type: 00000000011000111000010010110011
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x8 | Ctrl: RegWr=1 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x7
-IF Stage - PC: 11100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - R-type: 01000000101001001000010000110011
+IF Stage - PC: 0000001c, Instruction: 00000000011000111001010001100011
+ID Stage - R-type: 00000000100101000000010100110011
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x9 | Ctrl: RegWr=1 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x8
 WB Stage - Write: x7 <= 00000000 (from ALU)
-IF Stage - PC: 100000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - R-type: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: xxxxxxxx = 00000000 op xxxxxxxx | RD: x8 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+IF Stage - PC: 00000020, Instruction: 00000000000100000000010110010011
+ID Stage - R-type: 00000000011000111001010001100011
+EX Stage - ALU: xxxxxxxx = 00000000 op xxxxxxxx | RD: x10 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x9
 WB Stage - Write: x8 <= 00000000 (from ALU)
-IF Stage - PC: 100100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=xxxxxxxx | RD: x8
+IF Stage - PC: 00000024, Instruction: 00000000001000000000011000010011
+ID Stage - B-type: 00000000000100000000010110010011
+EX Stage - ALU: 00000000 = 00000000 op 00000008 | RD: x10 | Ctrl: RegWr=1 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=xxxxxxxx | RD: x10
 WB Stage - Write: x9 <= 00000000 (from ALU)
-IF Stage - PC: 101000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 00000028, Instruction: 00000010000000000000000001101111
+ID Stage - I-type: 00000000001000000000011000010011
+EX Stage - ALU: 00000001 = 00000000 op 00000001 | RD: x11 | Ctrl: RegWr=1 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x10
+WB Stage - Write: x10 <= xxxxxxxx (from ALU)
+IF Stage - PC: 0000002c, Instruction: 00000000000000000000000000000000
+ID Stage - I-type: 00000010000000000000000001101111
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x12 | Ctrl: RegWr=1 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000001 | RD: x11
+IF Stage - PC: 00000026, Instruction: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x12
+WB Stage - Write: x11 <= 00000001 (from ALU)
+IF Stage - PC: 0000002a, Instruction: 00000000000000000000000000000000
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+WB Stage - Write: x12 <= 00000000 (from ALU)
+IF Stage - PC: 0000002e, Instruction: 00000000000000000000000000000000
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+WB Stage - Write: x0 <= 00000000 (from ALU)
+IF Stage - PC: 00000032, Instruction: 00000000000000000000000000000000
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 00000036, Instruction: 00000000000000000000000000000000
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 0000003a, Instruction: 00000000000000000000000000000000
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 0000003e, Instruction: 00000000000000000000000000000000
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 00000042, Instruction: 00000000000000000000000000000000
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 00000046, Instruction: 00000000000000000000000000000000
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 0000004a, Instruction: 00000000001100000000011010010011
+ID Stage - Unknown: 00000000000000000000000000000000
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 0000004e, Instruction: 11111110000000000000000001101111
+ID Stage - Unknown: 00000000001100000000011010010011
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=1 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 00000052, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+ID Stage - I-type: 11111110000000000000000001101111
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x13 | Ctrl: RegWr=1 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x0
+IF Stage - PC: 0000004d, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
+MEM Stage - Pass: ALU=00000000 | RD: x13
+IF Stage - PC: 00000051, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-WB Stage - Write: x8 <= xxxxxxxx (from ALU)
-IF Stage - PC: 101100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 00000055, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 110000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+WB Stage - Write: x0 <= 00000000 (from ALU)
+IF Stage - PC: 00000059, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 110100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 0000005d, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 111000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 00000061, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 111100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1000000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1000100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1001000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1001100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1010000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1010100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1011000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1011100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1100000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1100100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1101000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1101100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1110000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1110100, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
-MEM Stage - Pass: ALU=00000000 | RD: x0
-IF Stage - PC: 1111000, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+IF Stage - PC: 00000065, Instruction: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ID Stage - Unknown: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 EX Stage - ALU: 00000000 = 00000000 op 00000000 | RD: x0 | Ctrl: RegWr=0 MemRd=0 MemWr=0
 MEM Stage - Pass: ALU=00000000 | RD: x0
 Simulation finished
 $finish called at time : 320 ns : File "C:/College/projects/Risc-V-32BIT-Dual-Core/top.sv" Line 20
 exit
-INFO: [Common 17-206] Exiting xsim at Wed Jan 14 13:01:40 2026...
+INFO: [Common 17-206] Exiting xsim at Thu Jan 15 23:21:03 2026...

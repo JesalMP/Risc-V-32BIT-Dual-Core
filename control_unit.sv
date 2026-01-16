@@ -8,11 +8,12 @@ module control_unit(
     output logic MemtoReg,
     output logic ALUSrc,
     output logic [1:0] ALUOp,
-    output logic Jump
+    output logic Jump,
+    output logic Branch
 );
 always @(*) begin
     RegWrite = 0; MemRead = 0; MemWrite = 0;
-    MemtoReg = 0; ALUSrc = 0; ALUOp = 2'b00; Jump = 0;
+    MemtoReg = 0; ALUSrc = 0; ALUOp = 2'b00; Jump = 0; Branch = 0;
 
     case (opcode)
         7'b0110011: begin // R-type
@@ -28,8 +29,14 @@ always @(*) begin
         7'b0100011: begin // SW
             MemWrite = 1; ALUSrc = 1; ALUOp = 2'b00;
         end
+        7'b1100011: begin // Branch (BEQ, BNE, BLT, BGE, BLTU, BGEU)
+            Branch = 1; ALUOp = 2'b01;
+        end
         7'b1101111: begin // JAL
             RegWrite = 1; Jump = 1; ALUOp = 2'b00;
+        end
+        7'b1100111: begin // JALR
+            RegWrite = 1; Jump = 1; ALUSrc = 1; ALUOp = 2'b00;
         end
         default: begin
             // do nothing

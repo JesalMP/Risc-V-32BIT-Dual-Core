@@ -8,6 +8,7 @@ module EX (
     // Data inputs
     input logic [31:0] rs1_in,
     input logic [31:0] rs2_in,
+    input logic [31:0] pc_in,
     input logic [4:0] rd_addr_in,
     input logic [31:0] imm_in,
     input logic [2:0] funct3_in,
@@ -21,6 +22,7 @@ module EX (
     input logic ALUSrc,
     input logic [1:0] ALUOp,
     input logic Jump,
+    input logic Branch,
     
     // Outputs
     output logic [31:0] alu_result_out,
@@ -31,6 +33,8 @@ module EX (
     output logic MemRead_out,
     output logic MemWrite_out,
     output logic MemtoReg_out,
+    output logic [31:0] branch_target_out,
+    output logic branch_taken_out,
     output logic stall_out
 );
 
@@ -40,6 +44,7 @@ module EX (
     logic [31:0] alu_result;
     logic [3:0] alu_control;
     logic alu_zero;
+    logic branch_condition;
     
     // ALU operand selection
     assign alu_operand_a = rs1_in;
@@ -85,6 +90,23 @@ module EX (
         .result(alu_result),
         .zero(alu_zero)
     );
+    
+    // Branch condition evaluation
+    always_comb begin
+        case (funct3_in)
+            3'b000: branch_condition = alu_zero;                          // BEQ
+            3'b001: branch_condition = ~alu_zero;                         // BNE
+            3'b100: branch_condition = alu_result[0];                     // BLT (signed)
+            3'b101: branch_condition = ~alu_result[0];                    // BGE (signed)
+            3'b110: branch_condition = alu_result[0];                     // BLTU (unsigned)
+            3'b111: branch_condition = ~alu_result[0];                    // BGEU (unsigned)
+            default: branch_condition = 1'b0;
+        endcase
+    end
+    
+    // Branch/Jump target calculation
+    assign branch_target_out = pc_in + imm_in;
+    assign branch_taken_out = Jump | (Branch & branch_condition);
     
     // Pipeline registers
     always_ff @(posedge clk or negedge rst_n) begin

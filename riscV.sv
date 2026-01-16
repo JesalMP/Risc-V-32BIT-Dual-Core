@@ -6,16 +6,20 @@ module riscV(input logic clk,
   //Stall and hazard signals
   logic stall_pipeline;
   logic [1:0] forward_a, forward_b;
+  logic branch_taken;
+  logic flush_pipeline;
 
   // RISC-V implementation details would go here
   //IF
   logic [31:0] instr_from_IF;
+  logic [31:0] pc_from_IF;
 
   //ID
   logic stall_from_ID;
   logic [6:0] opcode_from_ID;
   logic [31:0] rs1_data_from_ID;
   logic [31:0] rs2_data_from_ID;
+  logic [31:0] pc_from_ID;
   logic [4:0] rs1_addr_from_ID;
   logic [4:0] rs2_addr_from_ID;
   logic [4:0] rd_addr_from_ID;
@@ -30,11 +34,13 @@ module riscV(input logic clk,
   logic ALUSrc_from_ID;
   logic [1:0] ALUOp_from_ID;
   logic Jump_from_ID;
+  logic Branch_from_ID;
 
   //EX
   logic stall_from_EX;
   logic [31:0] alu_result_from_EX;
   logic [31:0] rs2_data_from_EX;
+  logic [31:0] branch_target_from_EX;
   logic [4:0] rd_addr_from_EX;
   logic [2:0] funct3_from_EX;
   logic RegWrite_from_EX;
@@ -54,6 +60,9 @@ module riscV(input logic clk,
   logic [31:0] wb_data;
   logic [4:0] wb_addr;
   logic wb_enable;
+
+  // Flush pipeline on branch/jump taken
+  assign flush_pipeline = branch_taken;
 
   // Hazard Detection Unit
   hazard_detection_unit hdu_inst (
@@ -75,7 +84,11 @@ module riscV(input logic clk,
   IF if_stage (
       .clk(clk),
       .rst_n(rst_n),
-      .instr_out(instr_from_IF)
+      .branch_taken(branch_taken),
+      .branch_target(branch_target_from_EX),
+      .stall(stall_pipeline),
+      .instr_out(instr_from_IF),
+      .pc_out(pc_from_IF)
   );
 
   // Instruction Decode (ID) stage
@@ -83,11 +96,14 @@ module riscV(input logic clk,
       .clk(clk),
       .rst_n(rst_n),
       .instr_in(instr_from_IF),
+      .pc_in(pc_from_IF),
       .stall_in(stall_pipeline),
+      .flush_in(flush_pipeline),
       .stall_out(stall_from_ID),
       .opcode_out(opcode_from_ID),
       .rs1_out(rs1_data_from_ID),
       .rs2_out(rs2_data_from_ID),
+      .pc_out(pc_from_ID),
       .rd_addr_out(rd_addr_from_ID),
       .funct3_out(funct3_from_ID),
       .funct7_out(funct7_from_ID),
@@ -100,6 +116,7 @@ module riscV(input logic clk,
       .ALUSrc(ALUSrc_from_ID),
       .ALUOp(ALUOp_from_ID),
       .Jump(Jump_from_ID),
+      .Branch(Branch_from_ID),
       .wb_data(wb_data),
       .wb_addr(wb_addr),
       .wb_enable(wb_enable),
@@ -114,6 +131,7 @@ module riscV(input logic clk,
       .stall_in(stall_pipeline),
       .rs1_in(rs1_data_from_ID),
       .rs2_in(rs2_data_from_ID),
+      .pc_in(pc_from_ID),
       .rd_addr_in(rd_addr_from_ID),
       .imm_in(imm_from_ID),
       .funct3_in(funct3_from_ID),
@@ -125,6 +143,7 @@ module riscV(input logic clk,
       .ALUSrc(ALUSrc_from_ID),
       .ALUOp(ALUOp_from_ID),
       .Jump(Jump_from_ID),
+      .Branch(Branch_from_ID),
       .alu_result_out(alu_result_from_EX),
       .rs2_out(rs2_data_from_EX),
       .rd_addr_out(rd_addr_from_EX),
@@ -133,6 +152,8 @@ module riscV(input logic clk,
       .MemRead_out(MemRead_from_EX),
       .MemWrite_out(MemWrite_from_EX),
       .MemtoReg_out(MemtoReg_from_EX),
+      .branch_target_out(branch_target_from_EX),
+      .branch_taken_out(branch_taken),
       .stall_out(stall_from_EX)
   );
 
