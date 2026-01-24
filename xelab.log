@@ -1,7 +1,7 @@
 Vivado Simulator v2025.1.0
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical top -s top_sim 
+Running: C:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe -debug typical top_dual -s top_dual_sim 
 Multi-threading is on. Using 18 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -10,16 +10,20 @@ Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module work.hazard_detection_unit
-Compiling module work.imem_sync_default
-Compiling module work.IF
+Compiling module work.imem_core0_default
+Compiling module work.IF_core0
 Compiling module work.control_unit
 Compiling module work.gprs
 Compiling module work.ID
 Compiling module work.ALU
 Compiling module work.EX
-Compiling module work.data_mem_default
-Compiling module work.MEM
 Compiling module work.WB
-Compiling module work.riscV
-Compiling module work.top
-Built simulation snapshot top_sim
+Compiling module work.riscv_core_default
+Compiling module work.imem_core1_default
+Compiling module work.IF_core1
+Compiling module work.riscv_core(CORE_ID=1)
+Compiling module work.memory_arbiter
+Compiling module work.data_mem_default
+Compiling module work.dual_core_riscv
+Compiling module work.top_dual
+Built simulation snapshot top_dual_sim

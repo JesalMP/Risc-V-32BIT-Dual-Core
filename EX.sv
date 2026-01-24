@@ -5,7 +5,6 @@ module EX (
     input logic rst_n,
     input logic stall_in = 0,
     
-    // Data inputs
     input logic [31:0] rs1_in,
     input logic [31:0] rs2_in,
     input logic [31:0] pc_in,
@@ -14,7 +13,6 @@ module EX (
     input logic [2:0] funct3_in,
     input logic [6:0] funct7_in,
     
-    // Control signals
     input logic RegWrite_in,
     input logic MemRead_in,
     input logic MemWrite_in,
@@ -24,7 +22,6 @@ module EX (
     input logic Jump,
     input logic Branch,
     
-    // Outputs
     output logic [31:0] alu_result_out,
     output logic [31:0] rs2_out,
     output logic [4:0] rd_addr_out,
@@ -38,7 +35,6 @@ module EX (
     output logic stall_out
 );
 
-    // Internal signals
     logic [31:0] alu_operand_a;
     logic [31:0] alu_operand_b;
     logic [31:0] alu_result;
@@ -46,21 +42,19 @@ module EX (
     logic alu_zero;
     logic branch_condition;
     
-    // ALU operand selection
     assign alu_operand_a = rs1_in;
     assign alu_operand_b = ALUSrc ? imm_in : rs2_in;
     
-    // ALU Control generation based on ALUOp and funct fields
     always_comb begin
         case (ALUOp)
-            2'b00: alu_control = 4'b0010; // ADD (for load/store)
-            2'b01: alu_control = 4'b0110; // SUB (for branches)
-            2'b10: begin // R-type or I-type arithmetic
+            2'b00: alu_control = 4'b0010; // ADD
+            2'b01: alu_control = 4'b0110; // SUB
+            2'b10: begin // r or i
                 case (funct3_in)
                     3'b000: begin
-                        if (funct7_in[5] && !ALUSrc) // SUB (R-type only)
+                        if (funct7_in[5] && !ALUSrc)
                             alu_control = 4'b0110;
-                        else // ADD/ADDI
+                        else
                             alu_control = 4'b0010;
                     end
                     3'b001: alu_control = 4'b0011; // SLL/SLLI

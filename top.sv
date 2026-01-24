@@ -24,5 +24,13 @@ module top;
       .clk(clk),
       .rst_n(rst_n)
   );
+  
+  // Uncomment for dual-core testing
+  /*
+  dual_core_riscv dual_core_inst (
+      .clk(clk),
+      .rst_n(rst_n)
+  );
+  */
 
 endmodule

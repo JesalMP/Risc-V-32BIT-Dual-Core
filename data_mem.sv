@@ -9,9 +9,9 @@ module data_mem #(
     input logic rst_n,
     input logic mem_read,
     input logic mem_write,
-    input logic [31:0] address,      // byte address
+    input logic [31:0] address,
     input logic [31:0] write_data,
-    input logic [2:0] funct3,        // for byte/half/word access
+    input logic [2:0] funct3,
     output logic [31:0] read_data
 );
 
@@ -26,11 +26,11 @@ module data_mem #(
         end
     end
     
-    // Synchronous read/write
+    
     always_ff @(posedge clk) begin
         if (mem_write) begin
             case (funct3[1:0])
-                2'b00: begin // SB - store byte
+                2'b00: begin
                     case (address[1:0])
                         2'b00: mem[word_addr][7:0]   <= write_data[7:0];
                         2'b01: mem[word_addr][15:8]  <= write_data[7:0];
@@ -38,13 +38,13 @@ module data_mem #(
                         2'b11: mem[word_addr][31:24] <= write_data[7:0];
                     endcase
                 end
-                2'b01: begin // SH - store half
+                2'b01: begin
                     if (address[1] == 0)
                         mem[word_addr][15:0]  <= write_data[15:0];
                     else
                         mem[word_addr][31:16] <= write_data[15:0];
                 end
-                2'b10: begin // SW - store word
+                2'b10: begin
                     mem[word_addr] <= write_data;
                 end
                 default: mem[word_addr] <= write_data;
@@ -53,7 +53,7 @@ module data_mem #(
         
         if (mem_read) begin
             case (funct3)
-                3'b000: begin // LB - load byte (sign-extended)
+                3'b000: begin
                     case (address[1:0])
                         2'b00: read_data <= {{24{mem[word_addr][7]}},  mem[word_addr][7:0]};
                         2'b01: read_data <= {{24{mem[word_addr][15]}}, mem[word_addr][15:8]};
@@ -61,16 +61,16 @@ module data_mem #(
                         2'b11: read_data <= {{24{mem[word_addr][31]}}, mem[word_addr][31:24]};
                     endcase
                 end
-                3'b001: begin // LH - load half (sign-extended)
+                3'b001: begin
                     if (address[1] == 0)
                         read_data <= {{16{mem[word_addr][15]}}, mem[word_addr][15:0]};
                     else
                         read_data <= {{16{mem[word_addr][31]}}, mem[word_addr][31:16]};
                 end
-                3'b010: begin // LW - load word
+                3'b010: begin
                     read_data <= mem[word_addr];
                 end
-                3'b100: begin // LBU - load byte unsigned
+                3'b100: begin
                     case (address[1:0])
                         2'b00: read_data <= {24'b0, mem[word_addr][7:0]};
                         2'b01: read_data <= {24'b0, mem[word_addr][15:8]};
@@ -78,7 +78,7 @@ module data_mem #(
                         2'b11: read_data <= {24'b0, mem[word_addr][31:24]};
                     endcase
                 end
-                3'b101: begin // LHU - load half unsigned
+                3'b101: begin
                     if (address[1] == 0)
                         read_data <= {16'b0, mem[word_addr][15:0]};
                     else
