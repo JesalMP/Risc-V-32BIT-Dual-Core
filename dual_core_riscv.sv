@@ -2,7 +2,8 @@
 
 module dual_core_riscv(
     input logic clk,
-    input logic rst_n
+    input logic rst_n,
+    output logic [31:0] debug_out
 );
 
     // Core 0 signals
@@ -94,5 +95,8 @@ module dual_core_riscv(
         .mem_write(shared_mem_write),
         .read_data(shared_mem_read_data)
     );
+    
+    // Debug output to prevent logic optimization during synthesis
+    assign debug_out = shared_mem_write_data;
 
 endmodule
